@@ -218,15 +218,6 @@ option {
     border-radius: 5px;
 }
 
-.product-item {
-    float: left;
-    margin-top: 28px;
-    margin-left: 28px;
-    width: 268px;
-    height: 422px;
-    position: relative;
-    z-index: 1;
-}
 ul.breadcrumbs{
     background: #fff;
     margin: 0;
@@ -309,10 +300,18 @@ ul.breadcrumbs > li::before, ul.breadcrumbs > li a{
 
 .product-item {
     border-radius: 0;
+    border: 1px dotted gray;
     background: #ffffff;
     left: -2px;
     top: -2px;
     min-height: 475px;
+    float: left;
+    margin-top: 28px;
+    margin-left: 28px;
+    width: 268px;
+    height: 422px;
+    position: relative;
+    z-index: 1;
     overflow: hidden;
     text-align: center;
     box-sizing: border-box !important;
@@ -839,7 +838,7 @@ padding:30px;
     display: block;
     padding: 6px 14px;
     width: 141px;
-    background: #1eff4f;
+    background: #009900;
     font-weight: bold;
     color: #FFFFFF;
     margin: 30px 0 100px 0;
@@ -919,7 +918,7 @@ padding:30px;
 #checkout_form #check_btn {
     width: 273px;
     color: #333333;
-    background: #1eff4f;
+    background: #009900;
     -wekit-border-radius: 4px;
     -moz-border-radius: 4px;
     -o-border-radius: 4px;

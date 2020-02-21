@@ -118,7 +118,7 @@ class Product
     public static function getImage ($id) {
 
         // Название изображения-пустышки
-        $noImage = 'no-image.jpg';
+        $noImage = 'no-image.png';
 
         // Путь к папке с товарами
         $path = '/upload/img/products/';

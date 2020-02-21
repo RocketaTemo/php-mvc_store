@@ -3,7 +3,7 @@
 <?php foreach($products as $product):?>
 <div class="product-item">
     <a href="/product/<?=$product['alias']?>">
-        <img alt="" width="268px" height="249px" src="<?=Product::getImage($product['alias']); ?>" /></a>
+        <img alt="" width="268px" height="249px" src="<?=Product::getImage($product['id']); ?>" /></a>
     <div class="product-list">
         <a href="/product/<?=$product['alias']?>">
             <div class="product-name">

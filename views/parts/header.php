@@ -67,10 +67,6 @@ include (ROOT . '/widgets/menu/menu.php');
                         <div class="cart_count_w">
                             <span class="cart_count"><?=Cart::itemsCount()?></span>
                         </div>
-                        <span class="cart_info_text">
-                            <span>КОРЗИНА:</span>
-                            <br>
-                        </span>
                     </a>
                 </div>
                 <div class="cab">
@@ -83,10 +79,6 @@ include (ROOT . '/widgets/menu/menu.php');
                         <div class="cart_count_w">
                             <span class="cart_count"><?=Cart::itemsCount()?></span>
                         </div>
-                        <span class="cart_info_text">
-                            <span>КОРЗИНА:</span>
-                            <br>
-                        </span>
                     </a>
                 </div>
                 <div class="cab">

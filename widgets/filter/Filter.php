@@ -25,7 +25,8 @@ Class Filter{
         $res->execute();
         $data = $res->fetchAll(PDO::FETCH_ASSOC);
         debug($data);
-        $groups=[];
+        $groups=[
+        ];
         foreach ($data as $key => $value) {
             $groups[$value['id_attribute']] = $value['name_attribute'];
         }

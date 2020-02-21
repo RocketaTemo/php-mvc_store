@@ -39,18 +39,41 @@ class Cart
         return false;
     }
 
-    //Удаляем продукт из корзины
-    public static function delProduct($productId){
-
-        //получаем массив товаров(Колво, id) из корзины
+    //удаляем 1ед. продукта из корзину
+    public static function minusProduct($productId)
+    {
+        //получаем массив товаров(кол-во, id) из корзины
         $productsInCart = self::getProducts();
-
+         
         //удаляем нужный товар по 1 единице
         if ($productsInCart[$productId] == 1) {
             unset($productsInCart[$productId]);
         } else {
             $productsInCart[$productId]--;
         }
+
+        //записываем новый массив в сессию
+        $_SESSION['products'] = $productsInCart;
+    }
+
+    //добавляем 1ед. продукта в корзину
+    public static function plusProduct($productId)
+    {
+        //получаем массив товаров(кол-во, id) из корзины
+        $productsInCart = self::getProducts();
+            $productsInCart[$productId]++;
+        //записываем новый массив в сессию
+        $_SESSION['products'] = $productsInCart;
+    }
+
+    //Удаляем продукт из корзины
+    public static function delProduct($productId){
+
+        //получаем массив товаров(кол-во, id) из корзины
+        $productsInCart = self::getProducts();
+
+        //удаляем нужный товар
+            unset($productsInCart[$productId]);
 
         //записываем новый массив в сессию
         $_SESSION['products'] = $productsInCart;

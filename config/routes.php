@@ -13,6 +13,8 @@ return array(
 	//корзина
 	'cart/add/([0-9]+)' => 'cart/add/$1',
 	'cart/checkout' => 'cart/checkout',
+	'cart/minus/([0-9]+)' => 'cart/minus/$1',
+	'cart/plus/([0-9]+)' => 'cart/plus/$1',
 	'cart/delete/([0-9]+)' => 'cart/delete/$1',
 	'cart' => 'cart/index',
 

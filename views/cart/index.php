@@ -1,4 +1,4 @@
-<?php
+    <?php
 include (ROOT . '/views/parts/header.php');
 ?>
 <section>
@@ -24,7 +24,11 @@ include (ROOT . '/views/parts/header.php');
                                 <?php echo $product['name'];?>
                         </a></td>
                         <td><?php echo $product['price']?></td>
-                        <td><?php echo $productsInCart[$product['id']];?></td>
+                        <td>
+                            <a href="/cart/minus/<?= $product['id']?>" class="minus"><img src="../../template/images/minus.png"></a>
+                                <?php echo $productsInCart[$product['id']];?>
+                            <a href="/cart/plus/<?= $product['id']?>" class="plus"><img src="../../template/images/plus.png"></a>
+                        </td>
                         <td><a href="/cart/delete/<?php echo $product['id'];?>" class="del">
                             <img src="../../template/images/del.png">
                         </a></td>

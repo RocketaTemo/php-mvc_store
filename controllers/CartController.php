@@ -12,11 +12,24 @@ class CartController
         return true;
     }
 
+    //Удаление 1 ед товара из корзины
+    public function actionMinus($productId){
+        Cart::minusProduct($productId);
+        return header('Location: /cart');
+    }
+
+    //Добавление 1 ед товара в корзину
+    public function actionPlus($productId){
+        Cart::plusProduct($productId);
+        return header('Location: /cart');
+    }
+
     //Удаление товара из корзины
     public function actionDelete($productId){
         Cart::delProduct($productId);
         return header('Location: /cart');
     }
+    
     /**
      * Главная страница корзины
      * @return bool
@@ -79,12 +92,14 @@ class CartController
             $userId = User::checkLog();
             $userInfo = User::getUserById($userId);
             $userName = $userInfo['first_name'];
+            $userPhone = $userInfo['phone'];
+            debug($userPhone);
         }else $userId = false; //Если гость, то поля формы будут пустыми
 
         //Обработка формы
         if (isset($_POST) and !empty($_POST)) {
             $userName = trim(strip_tags($_POST['first_name']));
-            $userPhone = trim(strip_tags($_POST['tel']));
+            $userPhone = trim(strip_tags($_POST['phone']));
             $userText = trim(strip_tags($_POST['comment']));
             $postoffice = trim(strip_tags($_POST['postoffice_id']));
 
