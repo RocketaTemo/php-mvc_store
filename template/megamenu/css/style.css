@@ -1,0 +1,192 @@
+/* 
+- Name: megamenu.js - style.css
+- Version: 1.0
+- Latest update: 29.01.2016.
+- Author: Mario Loncarek
+- Author web site: http://marioloncarek.com
+*/
+
+
+/* ––––––––––––––––––––––––––––––––––––––––––––––––––
+Body - not related to megamenu
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+.menu-container  a {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+    background: transparent;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+
+.description {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+
+/* ––––––––––––––––––––––––––––––––––––––––––––––––––
+megamenu.js STYLE STARTS HERE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+/* ––––––––––––––––––––––––––––––––––––––––––––––––––
+Screen style's
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.menu-container {
+    width:95%;
+    height: inherit;
+    margin: 0 auto;
+    background: #009900;
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+}
+.menu > ul {
+    margin: 0 auto;
+    width: inherit;
+    height: 60px;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    /* IF .menu position=relative -> ul = container width, ELSE ul = 100% width */
+    box-sizing: border-box;
+    justify-content: center;
+}
+.menu img {
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.menu > ul:before,
+.menu > ul:after {
+    content:"";
+    display: table;
+}
+
+.menu > ul:after {
+    clear: both;
+}
+
+.menu > ul > li {
+    float: left;
+    background: #009900;
+    padding: 0;
+    margin: 0;
+    pointer-events: cl
+}
+
+.menu > ul > li a {
+    text-decoration: none;
+    height: 55px;
+    padding: 1.2em 3em;
+    display: block;
+
+}
+.menu span{
+    display:flex;
+    text-align: center;
+}
+
+.menu li:hover {
+    background: #3c0;
+}
+
+.menu > ul > li > ul {
+    display: none;
+    width: 100%;
+    background: #009900;
+    position: absolute;
+    z-index: 99;
+    left: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.menu > ul > li > ul:before,
+.menu > ul > li > ul:after {
+    content: "";
+    display: table;
+}
+
+.menu > ul > li > ul:after {
+    clear: both;
+}
+
+.menu > ul > li > ul > li {
+    margin: 0;
+    padding-bottom: 0;
+    list-style: none;
+    background: none;
+    float: left;
+}
+
+.menu > ul > li > ul > li a {
+    padding: .3em 0;
+    text-align: center;
+    display: block;
+    border-top: 1px solid #fff;
+}
+
+.menu > ul > li > ul > li > ul {
+    display: block;
+    padding: 0;
+    margin: 10px 0 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.menu > ul > li > ul > li > ul:before,
+.menu > ul > li > ul > li > ul:after {
+    content: "";
+    display: table;
+}
+
+.menu > ul > li > ul > li > ul:after {
+    clear: both;
+}
+
+.menu > ul > li > ul > li > ul > li {
+    float: left;
+    width: 100%;
+    padding: 10px 0;
+    margin: 0;
+    font-size: .8em;
+}
+
+.menu > ul > li > ul > li > ul > li a {
+    border: 0;
+}
+
+.menu > ul > li > ul.normal-sub {
+    width: 220px;
+    left: auto;
+    padding: 0;
+}
+
+.menu > ul > li > ul.normal-sub > li {
+    width: 100%;
+}
+
+.menu > ul > li > ul.normal-sub > li a {
+    padding: 20px 0 0 0;
+}
