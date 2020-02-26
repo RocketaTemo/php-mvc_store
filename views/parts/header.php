@@ -84,7 +84,7 @@ include (ROOT . '/widgets/menu/menu.php');
                 <div class="cab">
                     <img src="/template/images/user.png" width="50" height="50" alt="user">
                     <br>
-                    <a href="/cabinet">Личный кабинет</a>
+                    <a href="/cabinet"><?=ucfirst(User::getUserById(User::checkLog())['first_name'])?></a>
                 </div>
                 <?php endif;?>
             </div>

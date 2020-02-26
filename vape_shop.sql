@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 09 2019 г., 00:45
+-- Время создания: Фев 26 2020 г., 15:37
 -- Версия сервера: 8.0.15
 -- Версия PHP: 7.3.9
 
@@ -30,17 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `attribute_group` (
   `id_attribute` int(11) NOT NULL,
-  `name_attribute` varchar(128) NOT NULL
+  `name_attribute` varchar(128) NOT NULL,
+  `alias` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица атрибутов';
 
 --
 -- Дамп данных таблицы `attribute_group`
 --
 
-INSERT INTO `attribute_group` (`id_attribute`, `name_attribute`) VALUES
-(1, 'Никотин'),
-(2, 'Объем'),
-(3, 'Производитель');
+INSERT INTO `attribute_group` (`id_attribute`, `name_attribute`, `alias`) VALUES
+(1, 'Никотин', 'avtorskie-zhidkosti'),
+(2, 'Объем', 'avtorskie-zhidkosti'),
+(3, 'Производитель', 'avtorskie-zhidkosti');
 
 -- --------------------------------------------------------
 
@@ -99,25 +100,24 @@ INSERT INTO `attribute_value` (`id`, `id_attr_group`, `value`) VALUES
 --
 
 CREATE TABLE `attribute_valuey` (
-  `id_value` int(11) NOT NULL,
-  `attribute_value` varchar(128) NOT NULL
+  `id_value` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Таблица значений атрибутов';
 
 --
 -- Дамп данных таблицы `attribute_valuey`
 --
 
-INSERT INTO `attribute_valuey` (`id_value`, `attribute_value`) VALUES
-(7, '0 мг'),
-(8, '1.5 мг'),
-(1, '10 мл'),
-(5, '100 мл'),
-(6, '120 мл'),
-(2, '15 мл'),
-(9, '3 мг'),
-(3, '30 мл'),
-(10, '6 мг'),
-(4, '60 мл');
+INSERT INTO `attribute_valuey` (`id_value`) VALUES
+(1),
+(2),
+(3),
+(4),
+(5),
+(6),
+(7),
+(8),
+(9),
+(10);
 
 -- --------------------------------------------------------
 
@@ -129,38 +129,35 @@ CREATE TABLE `categories` (
   `id` int(10) NOT NULL,
   `parent_id` int(10) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
-  `alias` varchar(255) NOT NULL
+  `alias` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `categories`
 --
 
-INSERT INTO `categories` (`id`, `parent_id`, `name`, `alias`) VALUES
-(1, 0, 'ЭЛЕКТРОННЫЕ СИГАРЕТЫ', 'elektronnye-sigarety'),
-(2, 0, 'ЖИДКОСТЬ', 'zhidkosti'),
-(3, 0, 'КОМПЛЕКТУЮЩИЕ', 'komplektuyushchie'),
-(4, 0, 'САМОЗАМЕС', 'samozames'),
-(5, 0, 'АКСЕССУАРЫ', 'aksessuary'),
-(6, 1, 'СТАРТОВЫЕ НАБОРЫ', 'startovye-nabory\r\n'),
-(7, 1, 'БОКС МОДЫ\r\n', 'box-modi'),
-(10, 1, 'МЕХАНИЧЕСКИЕ МОДЫ', 'mech-modi'),
-(11, 1, 'АТОМАЙЗЕРЫ', 'atomi'),
-(12, 2, 'ПРЕМИУМ ЖИДКОСТИ', 'premium-zhidkosti'),
-(13, 2, 'АВТОРСКИЕ ЖИДКОСТИ', 'avtorskie-zhidkosti'),
-(14, 3, 'АККУМУЛЯТОРЫ', 'akkumulyatory'),
-(15, 3, 'ЗАРЯДНЫЕ', 'zaryadnie'),
-(16, 3, 'ДРИП-ТИПЫ', 'drip-tipy'),
-(17, 3, 'СПИРАЛИ', 'spirali'),
-(18, 3, 'ХЛОПОК', 'hlopok'),
-(19, 4, 'АРОМАТИЗАТОРЫ', 'aromatizatory'),
-(20, 4, 'ГОТОВЫЕ БАЗЫ', 'gotovie-bazy'),
-(21, 4, 'ФЛАКОНЫ', 'flakony'),
-(22, 4, 'НИКОТИН', 'nikotin'),
-(23, 5, 'ВЕЙП БЕНДЫ', 'vape-bandy'),
-(24, 5, 'ИНСТРУМЕНТЫ', 'instrumenty'),
-(25, 5, 'ТЕРМОУСАДКА 18650', 'termousadka-18650'),
-(26, 5, 'СТЕКЛА', 'stekla');
+INSERT INTO `categories` (`id`, `parent_id`, `name`, `alias`, `img`) VALUES
+(1, 0, 'ЭЛЕКТРОННЫЕ СИГАРЕТЫ', 'elektronnye-sigarety', '/upload/img/siga.png'),
+(2, 0, 'ЖИДКОСТЬ', 'zhidkosti', '/upload/img/zhizha.png'),
+(3, 0, 'КОМПЛЕКТУЮЩИЕ', 'komplektuyushchie', '/upload/img/komplekt.png'),
+(4, 0, 'САМОЗАМЕС', 'samozames', '/upload/img/zames.png'),
+(6, 1, 'СТАРТОВЫЕ НАБОРЫ', 'startovye-nabory\r\n', ''),
+(7, 1, 'БОКС МОДЫ\r\n', 'box-modi', ''),
+(10, 1, 'МЕХАНИЧЕСКИЕ МОДЫ', 'mech-modi', ''),
+(11, 1, 'АТОМАЙЗЕРЫ', 'atomi', ''),
+(12, 2, 'ПРЕМИУМ ЖИДКОСТИ', 'premium-zhidkosti', ''),
+(13, 2, 'АВТОРСКИЕ ЖИДКОСТИ', 'avtorskie-zhidkosti', ''),
+(14, 3, 'АККУМУЛЯТОРЫ', 'akkumulyatory', ''),
+(15, 3, 'ЗАРЯДНЫЕ', 'zaryadnie', ''),
+(16, 3, 'ДРИП-ТИПЫ', 'drip-tipy', ''),
+(17, 3, 'СПИРАЛИ', 'spirali', ''),
+(18, 3, 'ХЛОПОК', 'hlopok', ''),
+(19, 4, 'АРОМАТИЗАТОРЫ', 'aromatizatory', ''),
+(20, 4, 'ГОТОВЫЕ БАЗЫ', 'gotovie-bazy', ''),
+(21, 4, 'ФЛАКОНЫ', 'flakony', ''),
+(22, 4, 'НИКОТИН', 'nikotin', ''),
+(29, 0, 'АКСЕССУАРЫ', 'aksesuary', '');
 
 -- --------------------------------------------------------
 
@@ -243,8 +240,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `cat_id`, `name`, `alias`, `price`, `availability`, `brand`, `description`) VALUES
-(1, 13, 'вкусный пончик', 'corbanated-donut', '1488', 1, 'imvape', ''),
-(3, 13, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'qqqqqqqq', '9999', 1, 'fsfas', '');
+(1, 13, 'вкусный пончик', 'corbanated-donut', '3212', 0, 'imvape', 'fdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddssssssssssssssssssss'),
+(3, 13, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'qqqqqqqq', '9999', 1, 'fsfas', ''),
+(4, 13, 'sdasdasd', 'ssssss', '432', 1, 'lolololo', 'asdas'),
+(6, 2, 'ICE APPLE', 'ice-apple', '200', 1, 'flavorart', 'фывфывыфвфывфыв');
 
 -- --------------------------------------------------------
 
@@ -283,6 +282,19 @@ CREATE TABLE `reviews` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Дамп данных таблицы `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `product_id`, `user_id`, `text`) VALUES
+(1, 1, 1, 'dasdasdsa'),
+(2, 1, 1, 'wwww'),
+(3, 1, 1, 'wwww'),
+(4, 1, 1, 'eqweqweqw'),
+(5, 1, 1, 'eqweqweqw'),
+(6, 1, 1, 'dasdasda'),
+(7, 1, 1, 'wwwwwwwwwwww');
+
 -- --------------------------------------------------------
 
 --
@@ -306,7 +318,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `phone`, `password`, `city_id`, `postoffice_id`, `role`) VALUES
-(1, 'artem', 'motyrev', 'admin@gmail.com', '0967449500', '$2y$10$j0rpR1NdBNZ7.MtLIzVatuJVr9WsMeuQz88g8cmvMFaTHn/mkPsk6', 1, 1, 'user');
+(1, 'artem', 'motyrev', 'admin@gmail.com', '0967449500', '$2y$10$j0rpR1NdBNZ7.MtLIzVatuJVr9WsMeuQz88g8cmvMFaTHn/mkPsk6', 1, 1, 'admin');
 
 --
 -- Индексы сохранённых таблиц
@@ -336,8 +348,7 @@ ALTER TABLE `attribute_value`
 -- Индексы таблицы `attribute_valuey`
 --
 ALTER TABLE `attribute_valuey`
-  ADD PRIMARY KEY (`id_value`),
-  ADD UNIQUE KEY `attributte_value` (`attribute_value`);
+  ADD PRIMARY KEY (`id_value`);
 
 --
 -- Индексы таблицы `categories`
@@ -405,7 +416,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `attribute_group`
 --
 ALTER TABLE `attribute_group`
-  MODIFY `id_attribute` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_attribute` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `attribute_value`
@@ -423,7 +434,7 @@ ALTER TABLE `attribute_valuey`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT для таблицы `cities`
@@ -447,13 +458,13 @@ ALTER TABLE `postoffice`
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

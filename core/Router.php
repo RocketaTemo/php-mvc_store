@@ -51,6 +51,11 @@ class Router
 				$controllerFile = ROOT . "/controllers/" . $controllerName . ".php";
 				if (file_exists($controllerFile))
 					include_once($controllerFile);
+				elseif(!file_exists($controllerFile))
+				{
+					$controllerFile = ROOT . "/controllers/admin/" . $controllerName . ".php";
+					include_once($controllerFile);
+				}
 
 				//Создаем объект контроллера и дергаем нужный action
 				$controllerObject = new $controllerName;

@@ -3,7 +3,6 @@ include (ROOT . '/views/parts/header.php');
 ?>
 <section>
     <div class="container">
-        <input type=submit name="submit" value="Оставить комментарий" id="add_review_btn">
     <div class="content">
         <div class = "comment">
             <h2>Отзывы покупателей о <?php echo $product['name'].' ('.$qtyReviews;?>)</h2>
@@ -36,8 +35,9 @@ include (ROOT . '/views/parts/header.php');
                 <input required type="email" name="email">
             <?php endif; ?>
             <input type="submit" name="submit" value="Оставить отзыв" id="review_btn">
+            <br><br>
         </form>
-    </div>
-
-    </div>
 </section>
+<?php
+include (ROOT . '/views/parts/footer.php');
+?>
