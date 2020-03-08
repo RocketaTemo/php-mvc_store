@@ -963,6 +963,8 @@ padding:30px;
 .container_admin {
     width: 1200px;
     margin: 0 auto;
+    background-color: white;
+    padding: 30px;
 }
 
 #admin_main, #admin_to_main {
@@ -1036,25 +1038,41 @@ padding:30px;
 
 /*CSS для страницы товаров*/
 #admin_product_list {
-    width: 1196px;
-    margin-top: 32px;
+    border: 1px solid #DDDDDD;
+    width: 915px;
+    table-layout: fixed;
 }
 
-#admin_product_list td {
-    padding-left: 2px;
+#admin_product_list tr:nth-child(odd) {
+    background-color: #efefe8;
 }
 
-#admin_product_list th {
-    text-align: left;
+#admin_product_list th:nth-child(2) {
+    width: 406px;
+}
+
+#admin_product_list th:last-child {
+    width: 84px;
 }
 
 #admin_product_list tr {
-    height: 38px;
-    font-size: 15px;
+    height: 43px;
 }
 
-#admin_product_list tr:first-child {
-    font-size: 17px;
+#admin_product_list td {
+    border-left: 1px solid #DDDDDD;
+    padding-left: 6px;
+    word-wrap: break-word;
+}
+#admin_product_list  td:first-child {
+    border-left: none;
+}
+#admin_product_list  th {
+    border-left: 1px solid #DDDDDD;
+}
+#admin_product_list  th:first-child {
+    border-left: none;
+    width: 210px;
 }
 
 #admin_list_h4 {

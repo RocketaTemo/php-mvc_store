@@ -6,7 +6,7 @@ class Product
 {
     /**
      * Выводим товары по выбранной категории
-     * @param $catAlias ид. категории
+     * @param $catId ид. категории
      * @return array
      */
     public static function getProductListByCatId ($catId, $sql_parts = NULL, $sort = NULL){
@@ -135,27 +135,44 @@ class Product
         // Возвращаем путь изображения-пустышки
         return $path . $noImage;
     }
+    public static function addImage($id){
 
+        $img = $id . 'jpg';
+
+        $db = Db::getConnect();
+
+        $sql = "
+        UPDATE products
+            SET img = :img
+                WHERE id = :id
+        ";
+
+        $res = $db->prepare($sql);
+        $res -> bindParam(':id', $id, PDO::PARAM_INT);
+        $res -> bindParam(':img', $img, PDO::PARAM_STR);
+        return $res->execute();
+    }
     public static function addProduct($options){
         $db = Db::getConnect();
 
-        $sql = "INSERT INTO products(categoryName, name, price,
+        $sql = "INSERT INTO products(cat_id, name , price,
                             availability, brand, description)
             VALUES(:category, :name, :price,
                             :availability, :brand, :description)
         ";
         $res = $db->prepare($sql);
-
+        debug($options['category']);
         $res -> bindParam(':category', $options['category'], PDO::PARAM_STR);
         $res -> bindParam(':name', $options['name'], PDO::PARAM_STR);
         $res -> bindParam(':price', $options['price'], PDO::PARAM_INT);
         $res -> bindParam(':availability', $options['availability'], PDO::PARAM_INT);
         $res -> bindParam(':brand', $options['brand'], PDO::PARAM_STR);
         $res -> bindParam(':description', $options['description'], PDO::PARAM_STR);
-
+        
         //Если запрос выполнен успешно
         if ($res->execute()) {
             //Возвращаем id последней записи, позже, в контроллере переходим на страницу этого товара, если все успешно
+            self::createAlias($db->lastInsertId(), $options['name']);
             return $db->lastInsertId();
         } else {
             return 0;
@@ -213,5 +230,87 @@ class Product
 
         //Получение и возврат результатов
         return $res->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function createAlias($id, $str){
+        $str = self::str2url($str)."-{$id}";
+        $db = Db::getConnect();
+        $sql = "
+            UPDATE products
+            SET alias = :alias
+            WHERE id = :id
+        ";
+        $res = $db->prepare($sql);
+        $res -> bindParam(':alias', $str, PDO::PARAM_STR);
+        $res -> bindParam(':id', $id, PDO::PARAM_INT);
+        return $res -> execute();
+    }
+
+    public static function str2url($str) {
+        // переводим в транслит
+        $str = self::rus2translit($str);
+        // в нижний регистр
+        $str = strtolower($str);
+        // заменям все ненужное нам на "-"
+        $str = preg_replace('~[^-a-z0-9_]+~u', '-', $str);
+        // удаляем начальные и конечные '-'
+        $str = trim($str, "-");
+        return $str;
+    }
+
+    public static function rus2translit($string) {
+
+        $converter = array(
+
+            'а' => 'a',   'б' => 'b',   'в' => 'v',
+
+            'г' => 'g',   'д' => 'd',   'е' => 'e',
+
+            'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
+
+            'и' => 'i',   'й' => 'y',   'к' => 'k',
+
+            'л' => 'l',   'м' => 'm',   'н' => 'n',
+
+            'о' => 'o',   'п' => 'p',   'р' => 'r',
+
+            'с' => 's',   'т' => 't',   'у' => 'u',
+
+            'ф' => 'f',   'х' => 'h',   'ц' => 'c',
+
+            'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
+
+            'ь' => '\'',  'ы' => 'y',   'ъ' => '\'',
+
+            'э' => 'e',   'ю' => 'yu',  'я' => 'ya',
+
+
+
+            'А' => 'A',   'Б' => 'B',   'В' => 'V',
+
+            'Г' => 'G',   'Д' => 'D',   'Е' => 'E',
+
+            'Ё' => 'E',   'Ж' => 'Zh',  'З' => 'Z',
+
+            'И' => 'I',   'Й' => 'Y',   'К' => 'K',
+
+            'Л' => 'L',   'М' => 'M',   'Н' => 'N',
+
+            'О' => 'O',   'П' => 'P',   'Р' => 'R',
+
+            'С' => 'S',   'Т' => 'T',   'У' => 'U',
+
+            'Ф' => 'F',   'Х' => 'H',   'Ц' => 'C',
+
+            'Ч' => 'Ch',  'Ш' => 'Sh',  'Щ' => 'Sch',
+
+            'Ь' => '\'',  'Ы' => 'Y',   'Ъ' => '\'',
+
+            'Э' => 'E',   'Ю' => 'Yu',  'Я' => 'Ya',
+
+        );
+
+        return strtr($string, $converter);
+
     }
 }

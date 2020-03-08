@@ -18,7 +18,7 @@ class AdminProductController extends AdminBase {
         //выводим список всех товаров
         $products = Product::getProductsList();
 
-        require_once ROOT . "/views/admin_product/index.php";
+        require_once ROOT . "/views/admin/admin_product/index.php";
         return true;
     }
     /**
@@ -31,8 +31,7 @@ class AdminProductController extends AdminBase {
             exit("У вас нет доступа к этому разделу!");
 
         //Список категорий для выпадающего списка
-        $categories = Category::getCategoryListAdmin();
-
+        $categories = Category::getCategories();
         //Принимаем данные из формы
         if (isset($_POST) and !empty($_POST)) {
             $options['name'] = trim(strip_tags($_POST['name']));
@@ -43,18 +42,20 @@ class AdminProductController extends AdminBase {
             $options['availability'] = trim(strip_tags($_POST['availability']));
             //Если все ок, записываем новый товар
             $id = Product::addProduct($options);
-
+            
             // Если запись добавлена
             if ($id) {
                 // Проверим, загружалось ли через форму изображение
                 if (is_uploaded_file($_FILES["image"]["tmp_name"])) {
                     // Если загружалось, переместим его в нужную папку, дадим новое имя
-                    move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$id}.jpg");
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/img/products/{$id}.jpg");
+                    //записываем в бд ид. фотографии товара 
+                    Product::addImage($id);
                 }
             };
             header('Location: /admin/product');
         }
-        require_once ROOT . '/views/admin_product/add.php';
+        require_once ROOT . '/views/admin/admin_product/add.php';
         return true;
     }
     /**

@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Админка</title>
-    <link href="template/css/main.css" rel="stylesheet">
-    <script src="template/js/jquery.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link href="<?php ROOT?>/template/css/main.css" rel="stylesheet">
+    <link href="<?php ROOT?>/template/megamenu/css/style.css" rel="stylesheet">
+    <link href="<?php ROOT?>/template/css/ion.tabs.css" rel="stylesheet">
+    <link href="<?php ROOT?>/template/css/ion.tabs.skinBordered.css" rel="stylesheet">
+    <script src="<?php ROOT?>/template/js/jquery.js"></script>
+    <script src="<?php ROOT?>/template/js/main.js"></script>
+    <script src="<?php ROOT?>/template/megamenu/js/megamenu.js"></script>
+    <script src="<?php ROOT?>/template/js/ion.tabs.js"></script>
 </head>
 <body>
 <div id="wrapper">

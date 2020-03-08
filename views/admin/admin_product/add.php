@@ -17,7 +17,7 @@ include (ROOT . '/views/parts/header_admin.php');
                 <select name="category">
                     <?php if (is_array($categories)): ?>
                         <?php foreach ($categories as $category): ?>
-                            <option value="<?php echo $category['uriName']; ?>">
+                            <option value="<?php echo $category['id']; ?>">
                                 <?php echo $category['name']; ?>
                             </option>
                         <?php endforeach; ?>
