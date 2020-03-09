@@ -12,7 +12,7 @@ class User
 	 * @param $password пароль
 	 * @return bool  возвращает true/false
 	 */
-	public static function register($firstName,$lastName, $email, $phone, $password, $city_id, $postoffice_id)
+	public static function register($firstName,$lastName, $email, $phone, $password)
 	{
 
 		$conn = Db::getConnect();
@@ -20,8 +20,8 @@ class User
 		# $conn = null;
 
 		$sql = "
-                INSERT INTO users(first_name, last_name, email, phone, password, city_id, postoffice_id)
-                VALUES(:first_name, :last_name, :email, :phone, :password, :city_id, :postoffice_id)
+                INSERT INTO users(first_name, last_name, email, phone, password)
+                VALUES(:first_name, :last_name, :email, :phone, :password)
                 "; # имена placeholder`ов
 		#stmt - Statemate
 		$stmt = $conn->prepare($sql);
@@ -32,8 +32,6 @@ class User
 		$stmt->bindParam(':email', $email, PDO::PARAM_STR);
 		$stmt->bindParam(':phone', $phone, PDO::PARAM_STR);
 		$stmt->bindParam(':password', $password, PDO::PARAM_STR);
-		$stmt->bindParam(':city_id', $city_id, PDO::PARAM_INT);
-		$stmt->bindParam(':postoffice_id', $postoffice_id, PDO::PARAM_INT);
 
 		return $stmt->execute();
 	}
@@ -103,30 +101,6 @@ class User
             return true;
         return false;
     }
-
-	/**
-	 * Проверяем поле Город на корректность
-	 * @param $password
-	 * @return bool
-	 */
-	public static function checkCity($city)
-	{
-		if ($city != 0)
-			return true;
-		return false;
-	}
-
-	/**
-	 * Проверяем поле Почта на корректность
-	 * @param $password
-	 * @return bool
-	 */
-	public static function checkPostal($post)
-	{
-		if (strlen($post) != 0)
-			return true;
-		return false;
-	}
 
 	/**
 	 * Проверяем поле Пароль на корректность
@@ -204,7 +178,7 @@ class User
 		$conn = Db::getConnect();
 
 		$sql = "
-                SELECT id, first_name, last_name, email, phone, password, city_id, postoffice_id, role
+                SELECT id, first_name, last_name, email, phone, password, role
 					FROM users
 				WHERE email = :login
 					OR phone = :login
@@ -233,14 +207,13 @@ class User
 		$conn = Db::getConnect();
 
 		$sql = "
-			SELECT id, first_name, last_name, email, phone, password, city_id, postoffice_id, role
-				FROM users
+			SELECT * FROM users
 			WHERE id = :id
 				";
 
 		$res = $conn->prepare($sql);
 
-		$res->bindParam(':id', $userId);
+		$res->bindParam(':id', $userId, PDO::PARAM_INT);
 
 		$res->execute();
 
@@ -286,7 +259,7 @@ class User
 	 * Принимаем данные из контроллера и записываем в БД
 	 * @return bool  возвращает true/false
 	 */
-	public static function editUserInfo($id, $firstName, $lastName, $email, $phone, $city_id, $postoffice_id){
+	public static function editUserInfo($id, $firstName, $lastName, $email, $phone){
 		$db = Db::getConnect();
 
         $sql = "
@@ -296,9 +269,7 @@ class User
                 last_name = :lastName,
                 email = :email,
                 phone = :phone,
-                password = :password,
-				city_id =  :city_id,
-				postoffice_id =  :postoffice_id
+                password = :password
             WHERE id = :id
             ";
 		$res = $db->prepare($sql);
@@ -307,8 +278,6 @@ class User
         $res -> bindParam(':email', $email, PDO::PARAM_STR);
         $res -> bindParam(':phone', $phone, PDO::PARAM_STR);
         $res -> bindParam(':password', $password, PDO::PARAM_STR);
-        $res -> bindParam(':city_id', $city_id, PDO::PARAM_INT);
-		$res -> bindParam(':postoffice_id', $postoffice_id, PDO::PARAM_INT);
 		$res -> bindParam(':id', $id, PDO::PARAM_INT);
 
         return $res->execute();

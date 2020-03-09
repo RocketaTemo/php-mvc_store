@@ -36,8 +36,6 @@ class CartController
      */
      public function actionIndex (){
 
-        $categories = Category::getCategories();
-
         $productsInCart = false;
 
         //Получаем данные из корзины
@@ -60,13 +58,10 @@ class CartController
 
     //оформление заказа
     public function actionCheckout(){
-        $productsInCart = Cart::getProducts();
+        $productsInCart = Cart::getProducts(); 
         if($productsInCart == false){
             header('Location: /');
         }
-
-        //Список категорий для сайдбара
-        $categories = Category::getCategories();
 
         //Общая стоимость
         $productsIds = array_keys($productsInCart);
@@ -114,6 +109,7 @@ class CartController
             if (!$errors) {
                 // Если ошибок нет
                 // Сохраняем заказ в БД
+                debug('NOERROR');
                 $res = Order::save($userId, $userName, $userPhone, $productsInCart, $userText);
 
                 if ($res) {
@@ -126,6 +122,9 @@ class CartController
 
                     // Очистка корзины
                     Cart::clear();
+                }
+                else{
+                    debug('ошибка сохранения заказа в бд');
                 }
             }
         }

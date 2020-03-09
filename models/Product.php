@@ -114,13 +114,13 @@ class Product
         $db = Db::getConnect();
         //Разбиваем пришедший массив в строку
         $stringIds = implode(',', $productsIds);
+        debug($stringIds);
 
         $sql = "
-               SELECT id, name, price FROM products WHERE id IN ($stringIds)
+               SELECT id, alias, name, price FROM products WHERE id IN ($stringIds)
                ";
 
         $res = $db->query($sql);
-
         $products = $res->fetchAll(PDO::FETCH_ASSOC);
 
         return $products;

@@ -12,9 +12,6 @@ include (ROOT . '/views/parts/header.php');
             <?php else: ?>
 
             <p>Выбрано товаров: <?php echo $totalQuantity; ?>, на сумму: <?php echo $totalPrice; ?> грн</p><br/>
-
-            <?php if (!$res): ?>
-
             <?php if (isset($errors) && is_array($errors)):?>
                 <ul class="errors" id="error_checkout">
                     <?php foreach($errors as $error):?>
@@ -29,7 +26,6 @@ include (ROOT . '/views/parts/header.php');
                 <textarea name="comment" placeholder="Комментарий к заказу"></textarea>
                 <input type=submit name="submit" value="Оформить заказ" id="check_btn">
             </form>
-            <?php endif;?>
 
             <?php endif;?>
         </div>

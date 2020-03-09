@@ -17,10 +17,8 @@ require_once ROOT . '/models/Product.php';
 require_once ROOT . '/models/Cart.php';
 require_once ROOT . '/models/Order.php';
 require_once ROOT . '/models/Review.php';
-require_once ROOT . '/models/City.php';
-require_once ROOT . '/models/PostOffice.php';
 require_once ROOT . '/models/BreadCrumbs.php';
-require_once ROOT. '/widgets/filter/Filter.php';
+require_once ROOT . '/widgets/filter/Filter.php';
 
 function debug($data){
     echo '<script>';

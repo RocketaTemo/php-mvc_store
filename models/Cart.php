@@ -100,7 +100,6 @@ class Cart
         if ($products) {
             foreach ($products as $item) {
                 $total += $item['price'] * $productsInCart[$item['id']];
-                debug($total);
             }
         }
         return $total;

@@ -20,7 +20,7 @@ include (ROOT . '/views/parts/header.php');
                     <?php foreach($products as $product):?>
                     <tr>
                         <td><?php echo $product['id'];?></td>
-                        <td><a href="/product/<?php echo $product['id'];?>" class="cart_item">
+                        <td><a href="/product/<?php echo $product['alias'];?>" class="cart_item">
                                 <?php echo $product['name'];?>
                         </a></td>
                         <td><?php echo $product['price']?></td>

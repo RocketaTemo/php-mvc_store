@@ -21,8 +21,6 @@ class UserController
 		$email = '';
 		$phone = '';
 		$password = '';
-		$city_id = 0;
-		$postoffice_id = 0;
 
 		if (isset($_POST) and !empty($_POST)) {
 			//Удаляем теги, пробелы и сохраняем в переменные для проверки
@@ -31,8 +29,6 @@ class UserController
 			$email = trim(strip_tags($_POST['email']));
 			$phone = trim(strip_tags($_POST['phone']));
 			$password = trim(strip_tags($_POST['password']));
-			$city_id = trim(strip_tags($_POST['city_id']));
-			$postoffice_id = trim(strip_tags($_POST['postoffice_id']));
 
 			//Валидация полей
 			if (!User::checkFirstName($firstName))
@@ -50,11 +46,6 @@ class UserController
 			if (!User::checkPassword($password))
 				$errors[] = "Пароль не может быть короче 6-ти символов.";
 
-			if (!User::checkCity($city_id))
-				$errors[] = "Введите Ваш город!".$city_id."!!!";
-
-			if (!User::checkPostal($postoffice_id))
-				$errors[] = "Укажите отделение Новой Почты!";
 
 				if (!User::checkEmailExists($email))
 					$errors[] = "Этот e-mail уже используется.";
@@ -62,7 +53,7 @@ class UserController
 					$errors[] = "Этот номер уже используется.";
 
 			if ($errors == false)
-				$res = User::register($firstName, $lastName, $email, $phone, password_hash($password, PASSWORD_DEFAULT), $city_id, $postoffice_id);
+				$res = User::register($firstName, $lastName, $email, $phone, password_hash($password, PASSWORD_DEFAULT));
 		}
 		require_once ROOT . "/views/user/register.php";
 		return true;
