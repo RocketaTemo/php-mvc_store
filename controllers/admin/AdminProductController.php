@@ -9,7 +9,7 @@ class AdminProductController extends AdminBase {
      * Просмотр всех товаров
      * @return bool
      */
-    public function actionIndex () {
+    public function actionIndex() {
 
         //проверка доступа
         if(!self::checkAdmin())
@@ -25,7 +25,7 @@ class AdminProductController extends AdminBase {
      * Добавление товара
      * @return bool
      */
-    public function actionAdd () {
+    public function actionAdd() {
         //проверка доступа
         if(!self::checkAdmin())
             exit("У вас нет доступа к этому разделу!");
@@ -62,12 +62,12 @@ class AdminProductController extends AdminBase {
      * Редактирование товара
      * @return bool
      */
-    public function actionEdit ($productId) {
+    public function actionEdit($productId) {
         if(!self::checkAdmin())
             exit("У вас нет доступа к этому разделу!");
 
-        //Получаем список категорий для выпадающего списка
-        $categories = Category::getCategoryListAdmin();
+        //Список категорий для выпадающего списка
+        $categories = Category::getCategories();
 
         //Получаем информацию о выбранном товаре
         $product = Product::getProductById($productId);
@@ -76,7 +76,7 @@ class AdminProductController extends AdminBase {
         if (isset($_POST) and !empty($_POST)) {
             $options['name'] = trim(strip_tags($_POST['name']));
             $options['price'] = trim(strip_tags($_POST['price']));
-            $options['category'] = trim(strip_tags($_POST['category']));
+            $options['cat_id'] = trim(strip_tags($_POST['cat_id']));
             $options['brand'] = trim(strip_tags($_POST['brand']));
             $options['description'] = trim(strip_tags($_POST['description']));
             $options['availability'] = trim(strip_tags($_POST['availability']));
@@ -86,7 +86,7 @@ class AdminProductController extends AdminBase {
             header('Location: /admin/product');
         }
 
-        require_once ROOT . '/views/admin_product/edit.php';
+        require_once ROOT . '/views/admin/admin_product/edit.php';
         return true;
     }
 
@@ -108,7 +108,7 @@ class AdminProductController extends AdminBase {
             header('Location: /admin/product');
         }
 
-        require_once ROOT . '/views/admin_product/delete.php';
+        require_once ROOT . '/views/admin/admin_product/delete.php';
         return true;
     }
 }

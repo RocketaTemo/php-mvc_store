@@ -3,14 +3,14 @@
 class Order{
 
     //сохранение заказа в бд
-    public static function save($userId, $userName, $userPhone, $productsInCart, $userText, $postofficeId){
+    public static function save($userId, $userName, $userPhone, $productsInCart, $userText){
         $conn = Db::getConnect();
 
         //Преобразовываем массив товаров в строку JSON
         $productsInCart = json_encode($productsInCart);
         $sql = "
-            INSERT INTO orders (user_id, user_name, user_phone, user_text, products, postoffice_id
-                VALUES (:userId, :userName, :userPhone, :userText, :products, :postoffice_id)
+            INSERT INTO orders (user_id, user_name, user_phone, user_text, products
+                VALUES (:userId, :userName, :userPhone, :userText, :products)
             ";
         $res = $conn->prepare($sql);
         $res->bindParam(':userId', $userId, PDO::PARAM_INT);
@@ -18,7 +18,6 @@ class Order{
         $res->bindParam(':userPhone', $userPhone, PDO::PARAM_STR);
         $res->bindParam(':userText', $userText, PDO::PARAM_STR);
         $res->bindParam(':products', $productsInCart, PDO::PARAM_STR);
-        $res->bindParam(':postoffice_id', $postofficeId, PDO::PARAM_INT);
 
 
         return $res->execute();

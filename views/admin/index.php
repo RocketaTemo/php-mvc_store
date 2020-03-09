@@ -11,7 +11,6 @@ include (ROOT . '/views/parts/header_admin.php');
 
     <ul>
         <li><a target="_blank" href="/admin/product">Управление товарами</a></li>
-        <li><a target="_blank" href="/admin/category">Управление категориями</a></li>
         <li><a target="_blank" href="/admin/orders">Управление заказами</a></li>
         <li><a target="_blank" href="/admin/city">Управление городами</a></li>
         <li><a target="_blank" href="/admin/post">Управление почтой</a></li>

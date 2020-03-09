@@ -26,13 +26,6 @@ include (ROOT . '/views/parts/header.php');
                 <p>Для оформления заказа заполните форму. Наш менеджер свяжется с Вами.</p>
                 <input required type="text" name="first_name" placeholder="Введите имя" value="<?=$userName?>">
                 <input required type="phone" name="phone" value = "<?=$userPhone?>" placeholder="Телефон в формате: 0(xx)-xxx-xx-xx" value="<?=$userPhone?>">
-                <select name = "postoffice_id">
-                    <?php $postoffice = PostOffice::getPostById($user['postoffice_id'])?>
-                    <option value = <?php echo $user['postoffice_id'] ?>> <? echo $postoffice['name'] ?>  </option>
-                    <?php foreach ($postoffices as $fostoffice): ?>
-                    <option value = <?php echo $fostoffice['id'] ?>> <? echo $fostoffice['postcode'] ?>  </option>
-					<?php endforeach; ?>
-                </select>
                 <textarea name="comment" placeholder="Комментарий к заказу"></textarea>
                 <input type=submit name="submit" value="Оформить заказ" id="check_btn">
             </form>

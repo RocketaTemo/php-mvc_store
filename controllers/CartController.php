@@ -67,7 +67,6 @@ class CartController
 
         //Список категорий для сайдбара
         $categories = Category::getCategories();
-        $postoffices = Postoffice::getPostList();
 
         //Общая стоимость
         $productsIds = array_keys($productsInCart);
@@ -93,7 +92,6 @@ class CartController
             $userInfo = User::getUserById($userId);
             $userName = $userInfo['first_name'];
             $userPhone = $userInfo['phone'];
-            debug($userPhone);
         }else $userId = false; //Если гость, то поля формы будут пустыми
 
         //Обработка формы
@@ -101,7 +99,6 @@ class CartController
             $userName = trim(strip_tags($_POST['first_name']));
             $userPhone = trim(strip_tags($_POST['phone']));
             $userText = trim(strip_tags($_POST['comment']));
-            $postoffice = trim(strip_tags($_POST['postoffice_id']));
 
             //Флаг ошибок
             $errors = false;
@@ -117,7 +114,7 @@ class CartController
             if (!$errors) {
                 // Если ошибок нет
                 // Сохраняем заказ в БД
-                $res = Order::save($userId, $userName, $userPhone, $productsInCart, $userText, $postoffice);
+                $res = Order::save($userId, $userName, $userPhone, $productsInCart, $userText);
 
                 if ($res) {
                     // Если заказ успешно сохранен

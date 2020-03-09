@@ -4,22 +4,22 @@ include (ROOT . '/views/parts/header_admin.php');
 
 <section>
     <div class="container">
-        <h2>Редактировать товар #<?php echo $product['id']?></h2>
+        <h2>Редактировать товар #<?=$product['id']?></h2>
         <form action="#" method="post" id="add_form" enctype="multipart/form-data">
 
             <p>Название товара</p>
-            <input required type="text" name="name" value="<?php echo $product['name']?>">
+            <input required type="text" name="name" value="<?=$product['name']?>">
 
             <p>Стоимость</p>
-            <input required type="text" name="price" value="<?php echo $product['price']?>">
+            <input required type="text" name="price" value="<?=$product['price']?>">
 
             <p>Категория</p>
-            <select name="category">
+            <select name="cat_id">
                 <?php if (is_array($categories)): ?>
                     <?php foreach ($categories as $category): ?>
-                        <option value="<?php echo $category['uriName']; ?>"
-                            <?php if ($product['categoryName'] == $category['uriName']) echo ' selected'; ?>>
-                            <?php echo $category['name']; ?>
+                        <option value="<?php echo $category['id']; ?>"
+                            <?php if ($product['cat_id'] == $category['id']) echo ' selected'; ?>>
+                            <?=$category['name']?>
                         </option>
                     <?php endforeach; ?>
                 <?php endif; ?>

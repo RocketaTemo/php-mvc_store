@@ -93,6 +93,22 @@ class Product
         $product = $res->fetch(PDO::FETCH_ASSOC);
         return $product;
     }
+    public static function getProductById($productId){
+        $db = Db::getConnect();
+        
+        $sql = "
+            SELECT * FROM products
+                WHERE id = :id
+        ";
+
+        $res = $db->prepare($sql);
+        $res->bindParam(':id', $productId, PDO::PARAM_INT);
+        $res->execute();
+
+        $product = $res->fetch(PDO::FETCH_ASSOC);
+        return $product;
+
+    }
 
     public static function getProductsById ($productsIds){
         $db = Db::getConnect();
@@ -184,7 +200,7 @@ class Product
         $sql = "
             UPDATE products
             SET
-                categoryName = :category,
+                cat_id = :cat_id,
                 name = :name,
                 price = :price,
                 availability = :availability,
@@ -193,7 +209,7 @@ class Product
             WHERE id = :id
             ";
         $res = $db->prepare($sql);
-        $res -> bindParam(':category', $options['category'], PDO::PARAM_STR);
+        $res -> bindParam(':cat_id', $options['cat_id'], PDO::PARAM_INT);
         $res -> bindParam(':name', $options['name'], PDO::PARAM_STR);
         $res -> bindParam(':price', $options['price'], PDO::PARAM_INT);
         $res -> bindParam(':availability', $options['availability'], PDO::PARAM_INT);
