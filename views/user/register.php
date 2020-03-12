@@ -22,17 +22,6 @@ include (ROOT . "/views/parts/header.php");
                 <input required type="email" name="email" placeholder="Эл. почта" value="<?php echo $email ?>">
                 <input required type="text" name="phone" placeholder="Телефон (0961234567)" value="<?php echo $phone ?>">
                 <input required type="password" name="password" placeholder="Придумайте пароль"value="<?php echo $password ?>">
-                <p>Адрес доставки</p>
-                <select name = "city_id">
-                    <?php foreach ($cities as $city): ?>
-                    <option value = <?php echo $city['id'] ?>> <? echo $city['name'] ?>  </option>
-					<?php endforeach; ?>
-                </select>
-                <select name = "postoffice_id">
-                    <?php foreach ($postoffices as $fostoffice): ?>
-                    <option value = <?php echo $fostoffice['id'] ?>> <? echo $fostoffice['name'] ?>  </option>
-					<?php endforeach; ?>
-                </select>
                 <input type=submit name="submit" value="Регистрация" id="reg_btn">
                 <p>Если Вы уже зарегистрированы, перейдите на страницу <a href = "/user/login">входа в систему.</a></p>
             </form>

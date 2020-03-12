@@ -3,7 +3,7 @@ include (ROOT . '/views/parts/header_admin.php');
 ?>
 
     <div class="container_admin_del">
-        <h4>Удалить заказ #<?php echo $id; ?></h4>
+        <h4>Удалить заказ #<?php echo $orderId; ?></h4>
 
 
         <p>Вы действительно хотите удалить этот заказ?</p>

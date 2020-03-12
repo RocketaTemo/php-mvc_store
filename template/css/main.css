@@ -383,7 +383,7 @@ ul.breadcrumbs > li::before, ul.breadcrumbs > li a{
     border-bottom: 13px solid #009900;
 }
 .left_sidebar li a:hover {
-    color: #1eff4f;
+    color: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -526,7 +526,7 @@ ul.breadcrumbs > li::before, ul.breadcrumbs > li a{
 #registration_form #reg_btn {
     width: 273px;
     color: #333333;
-    background: #1eff4f;
+    background: #009900;
     -wekit-border-radius: 4px;
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
@@ -553,14 +553,14 @@ ul.breadcrumbs > li::before, ul.breadcrumbs > li a{
 #reg_thanks {
     width: 552px;
     margin: 150px auto 0;
-    color: #1eff4f;
+    color: #009900;
     font: bold 40px "Century Gothic", sans-serif;
 }
 
 #reg_main {
     font: bold 30px "Century Gothic", sans-serif;
     margin: 25px auto;
-    color: #1eff4f;
+    color: #009900;
     width: 355px;
 }
 
@@ -614,7 +614,7 @@ ul.breadcrumbs > li::before, ul.breadcrumbs > li a{
 #enter_form #enter_btn {
     width: 273px;
     color: #333333;
-    background: #1eff4f;
+    background: #009900;
     -wekit-border-radius: 4px;
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
@@ -656,7 +656,7 @@ ul.breadcrumbs > li::before, ul.breadcrumbs > li a{
 }
 
 #cabinet_list li a:hover {
-    color: #1eff4f;
+    color: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -687,7 +687,7 @@ ul.breadcrumbs > li::before, ul.breadcrumbs > li a{
 #edit_form #save_btn {
     width: 273px;
     color: #333333;
-    background: #1eff4f;
+    background: #009900;
     -wekit-border-radius: 4px;
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
@@ -719,14 +719,14 @@ ul.breadcrumbs > li::before, ul.breadcrumbs > li a{
 #edit_thanks {
     width: 585px;
     margin: 150px auto 0;
-    color: #1eff4f;
+    color: #009900;
     font: bold 40px "Century Gothic", sans-serif;
 }
 
 #to_cabinet {
     font: bold 30px "Century Gothic", sans-serif;
     margin: 25px auto;
-    color: #1eff4f;
+    color: #009900;
     width: 355px;
 }
 
@@ -826,7 +826,7 @@ padding:30px;
 }
 
 #empty_cart_to_main:hover {
-    color: #1eff4f;
+    color: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -874,7 +874,7 @@ padding:30px;
 }
 
 .cart_item:hover {
-    color: #1eff4f;
+    color: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -982,7 +982,7 @@ padding:30px;
 }
 
 #admin_main:hover {
-    color: #1eff4f;
+    color: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -997,7 +997,7 @@ padding:30px;
 }
 
 #admin_to_main:hover {
-    color: #1eff4f;
+    color: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -1012,7 +1012,7 @@ padding:30px;
 }
 
 .container_admin h4, .container_admin p {
-    color: #1eff4f;
+    color: #009900;
     margin-left: 25px;
 }
 
@@ -1021,7 +1021,7 @@ padding:30px;
 }
 
 .container_admin ul li a:hover {
-    color: #1eff4f;
+    color: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -1039,7 +1039,7 @@ padding:30px;
 /*CSS для страницы товаров*/
 #admin_product_list {
     border: 1px solid #DDDDDD;
-    width: 915px;
+    width: 100%;
     table-layout: fixed;
 }
 
@@ -1048,11 +1048,17 @@ padding:30px;
 }
 
 #admin_product_list th:nth-child(2) {
-    width: 406px;
+    width: 400px;
+}
+#admin_product_list th:nth-child(4) {
+    width: 150px;
+}
+#admin_product_list th:nth-child(5) {
+    width: 130px;
 }
 
 #admin_product_list th:last-child {
-    width: 84px;
+    width: 130px;
 }
 
 #admin_product_list tr {
@@ -1061,7 +1067,7 @@ padding:30px;
 
 #admin_product_list td {
     border-left: 1px solid #DDDDDD;
-    padding-left: 6px;
+    padding: 6px;
     word-wrap: break-word;
 }
 #admin_product_list  td:first-child {
@@ -1091,7 +1097,7 @@ padding:30px;
 
 .add_item:hover {
     color: #fff;
-    background: #1eff4f;
+    background: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -1125,7 +1131,7 @@ padding:30px;
 .container_admin_del input:hover {
     cursor: pointer;
     color: #fff;
-    background: #1eff4f;
+    background: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -1159,7 +1165,7 @@ padding:30px;
 #add_form #add_btn {
     width: 273px;
     color: #333333;
-    background: #1eff4f;
+    background: #009900;
     -wekit-border-radius: 4px;
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
@@ -1220,7 +1226,7 @@ padding:30px;
 
 .add_cat:hover {
     color: #fff;
-    background: #1eff4f;
+    background: #009900;
     -webkit-transition: 0.6s;
     -moz-transition: 0.6s;
     -o-transition: 0.6s;
@@ -1262,7 +1268,7 @@ padding:30px;
 }
 
 .container_admin_order_info h3 {
-    color: #1eff4f;
+    color: #009900;
     margin: 50px 0 20px 0;
 }
 
@@ -1316,11 +1322,11 @@ padding:30px;
     display: block;
     width: 25px;
     text-align: center;
-    color: #1eff4f;
+    color: #009900;
 }
 
 .active a {
-    background: #1eff4f !important;
+    background: #009900 !important;
     color: #FFFFFF !important;
 }
 
@@ -1353,7 +1359,7 @@ padding:30px;
 }
 
 #user_order_list span {
-    color: #1eff4f;
+    color: #009900;
     margin-left: 15px;
 }
 
@@ -1375,7 +1381,7 @@ padding:30px;
 
 .total_price span {
     margin-right: 25px;
-    color: #1eff4f;
+    color: #009900;
     margin-top: 25px;
 }
 

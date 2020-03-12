@@ -93,6 +93,8 @@ class CartController
         if (isset($_POST) and !empty($_POST)) {
             $userName = trim(strip_tags($_POST['first_name']));
             $userPhone = trim(strip_tags($_POST['phone']));
+            $userCity = trim(strip_tags($_POST['city']));
+            $userPostal = trim(strip_tags($_POST['postal']));
             $userText = trim(strip_tags($_POST['comment']));
 
             //Флаг ошибок
@@ -109,8 +111,7 @@ class CartController
             if (!$errors) {
                 // Если ошибок нет
                 // Сохраняем заказ в БД
-                debug('NOERROR');
-                $res = Order::save($userId, $userName, $userPhone, $productsInCart, $userText);
+                $res = Order::save($userId, $userName, $userPhone, $userCity, $userPostal, $productsInCart, $userText);
 
                 if ($res) {
                     // Если заказ успешно сохранен
@@ -122,9 +123,6 @@ class CartController
 
                     // Очистка корзины
                     Cart::clear();
-                }
-                else{
-                    debug('ошибка сохранения заказа в бд');
                 }
             }
         }

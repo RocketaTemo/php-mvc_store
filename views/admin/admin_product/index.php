@@ -13,6 +13,7 @@ include (ROOT . '/views/parts/header_admin.php');
             <th>id товара</th>
             <th>Название</th>
             <th>Цена</th>
+            <th colspan="2">Управление</th>
         </tr>
         <?php foreach ($products as $product):?>
         <tr>

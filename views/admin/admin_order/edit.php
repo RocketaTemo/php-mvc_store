@@ -14,7 +14,7 @@ include (ROOT . '/views/parts/header_admin.php');
             <input required type="text" name="phone" value="<?php echo $order['user_phone']?>">
 
             <p>Комментарий к заказу</p>
-            <input required type="text" name="comment" value="<?php echo $order['user_comment']?>">
+            <input required type="text" name="comment" value="<?php echo $order['user_text']?>">
 
             <p>Статус заказа</p>
             <select name="status">

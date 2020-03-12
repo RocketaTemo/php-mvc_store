@@ -13,29 +13,31 @@ include (ROOT . '/views/parts/header_admin.php');
                 <th>Телефон покупателя</th>
                 <th>Дата оформления</th>
                 <th>Статус</th>
+                <th colspan="3">Управление</th>
             </tr>
 
             <?php foreach ($orders as $order):?>
                 <tr>
-                    <td><?php echo $order['id']?></td>
-                    <td><?php echo $order['user_name']?></td>
-                    <td><?php echo $order['user_phone']?></td>
-                    <td><?php echo $order['formated_date']?></td>
+                    <td><?=$order['id']?></td>
+                    <td><?=$order['user_name']?></td>
+                    <td><?=$order['user_phone']?></td>
+                    <td><?=$order['date']?></td>
                     <td>
-                        <?php echo Order::getStatusText($order['status']);?>
+                        <?=Order::getStatusText($order['status']);?>
                     </td>
+      
 
-                    <td><a target="_blank" title="Просмотр" href="/admin/orders/view/<?php echo $order['id']?>" class="del">
+                    <td><a target="_blank" title="Просмотр" href="/admin/orders/view/<?=$order['id']?>" class="del">
                             <img src="../../template/images/view.png" alt="">
                         </a></td>
 
-                    <td><a target="_blank" title="Редактировать" href="/admin/orders/edit/<?php echo $order['id']?>" class="del">
+                    <td><a target="_blank" title="Редактировать" href="/admin/orders/edit/<?=$order['id']?>" class="del">
                             <img src="../../template/images/edit.png" alt="">
                     </a></td>
 
-                    <td><a title="Удалить" href="/admin/orders/delete/<?php echo $order['id']?>" class="del">
+                    <td><a title="Удалить" href="/admin/orders/delete/<?=$order['id']?>" class="del">
                             <img src="../../template/images/del.png" alt="">
-                    </a></td>
+                    </a></a>
                 </tr>
             <?php endforeach;?>
         </table>

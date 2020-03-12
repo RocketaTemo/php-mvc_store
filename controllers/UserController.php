@@ -11,8 +11,6 @@ class UserController
 	 */
 	public function actionRegister()
 	{
-		$cities = City::getCitiesList();
-		$postoffices = PostOffice::getPostList();
 		//Флаг ошибок
 		$res = false;
 		$errors = false;

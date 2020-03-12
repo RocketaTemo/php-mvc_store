@@ -22,7 +22,9 @@ include (ROOT . '/views/parts/header.php');
             <form action="#" method="post" id="checkout_form">
                 <p>Для оформления заказа заполните форму. Наш менеджер свяжется с Вами.</p>
                 <input required type="text" name="first_name" placeholder="Введите имя" value="<?=$userName?>">
-                <input required type="phone" name="phone" value = "<?=$userPhone?>" placeholder="Телефон в формате: 0(xx)-xxx-xx-xx" value="<?=$userPhone?>">
+                <input required type="phone" name="phone" value = "<?=$userPhone?>" placeholder="Телефон в формате: 0(xx)-xxx-xx-xx">
+                <input required type="text" name="city" placeholder="Город доставки" >
+                <input required type="text" name="postal" placeholder="Отделение Новой Почты">
                 <textarea name="comment" placeholder="Комментарий к заказу"></textarea>
                 <input type=submit name="submit" value="Оформить заказ" id="check_btn">
             </form>

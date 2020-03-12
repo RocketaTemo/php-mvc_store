@@ -54,8 +54,6 @@ class CabinetController
     //Изменить контактные данные юзера
     public function actionEdit (){
 
-        $cities = City::getCitiesList();
-		$postoffices = PostOffice::getPostList();
         //Получаем инфу о юзере из сессии
         $userId = User::checkLog();
         $userInfo = User::getUserById($userId);
@@ -68,8 +66,6 @@ class CabinetController
 			$lastName = trim(strip_tags($_POST['last_name']));
 			$email = trim(strip_tags($_POST['email']));
 			$phone = trim(strip_tags($_POST['phone']));
-			$city = trim(strip_tags($_POST['city_id']));
-            $postal = trim(strip_tags($_POST['postoffice_id']));
 
             //Флаг ошибок
             $errors = false;
@@ -84,12 +80,6 @@ class CabinetController
             if(!User::checkLine($firstName) || !User::checkLine($lastName))
                 $errors[] = "Ваши имя и фамилия не могут содержать символы или числа";
 
-			if (!User::checkCity($city))
-				$errors[] = "Введите Ваш город!";
-
-			if (!User::checkPostal($postal))
-                $errors[] = "Укажите отделение Новой Почты!";
-
             if($email != $userInfo['email'] )
                 if (!User::checkEmailExists($email))
                         $errors[] = "Этот e-mail уже используется.";
@@ -98,7 +88,7 @@ class CabinetController
                         $errors[] = "Этот номер уже используется.";
 
         if ($errors == false) {
-            $res = User::editUserInfo($userId, $firstName, $lastName, $email, $phone, $city, $postal);
+            $res = User::editUserInfo($userId, $firstName, $lastName, $email, $phone);
         }
         else header('cabinet/edit');
         }
@@ -111,9 +101,7 @@ class CabinetController
         //Получаем инфу о юзере из сессии
         $userId = User::checkLog();
         $orders = false;
-
         $orders = Order::getOrderByUserId($userId);
-
         require_once ROOT . '/views/cabinet/orders_history.php';
         return true;
     }

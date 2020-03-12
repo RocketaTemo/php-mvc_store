@@ -114,7 +114,6 @@ class Product
         $db = Db::getConnect();
         //Разбиваем пришедший массив в строку
         $stringIds = implode(',', $productsIds);
-        debug($stringIds);
 
         $sql = "
                SELECT id, alias, name, price FROM products WHERE id IN ($stringIds)
