@@ -7,7 +7,7 @@ class CategoryController {
 
     /*
      * Просмотр товаров по выбранной категории
-     * @param $categoryName название категории
+     * @param $categoryAlias название категории
      * @return bool
      */
     public function actionCategory($categoryAlias){

@@ -19,9 +19,9 @@ Class Filter{
         $db = DB::getConnect();
         $sql = "SELECT id_attribute, name_attribute
                     FROM attribute_group
-                        WHERE alias = :category";
+                        WHERE alias REGEXP :category";
         $res = $db->prepare($sql);
-        $res->bindParam(':category', $category, PDO::PARAM_STR);
+        $res->bindValue(':category', "^[$category]", PDO::PARAM_STR);
         $res->execute();
         $data = $res->fetchAll(PDO::FETCH_ASSOC);
         debug($data);

@@ -10,6 +10,8 @@ class Product
      * @return array
      */
     public static function getProductListByCatId ($catId, $sql_parts = NULL, $sort = NULL){
+        $db = Db::getConnect();
+        $sql = false;
         switch ($sort){
             case 'popular':
             $sort = 'ORDER BY count DESC';
@@ -28,23 +30,28 @@ class Product
             break;
             default: $sort = 'ORDER BY price ASC'; break;
         }
-        $db = Db::getConnect();
-
-        $sql = "SELECT * FROM products
-                   WHERE cat_id = :id AND alias IS NOT NULL
-                    $sql_parts $sort
-                ";
-
+        if($catId <= 4){
+        $sql = "SELECT p.id, p.cat_id, p.name, p.alias, 
+                CAST(p.price AS UNSIGNED) AS price,
+                p.availability, p.brand, p.description, p.img,
+                c.parent_id AS parent_id
+                FROM products p LEFT JOIN categories c ON p.cat_id = c.id
+                WHERE c.parent_id = :id 
+                $sql_parts $sort";
+        }
+        else{
+        $sql = "SELECT p.id, p.cat_id, p.name, p.alias, 
+                CAST(p.price AS UNSIGNED) AS price,
+                p.availability, p.brand, p.description, p.img
+                FROM products p WHERE cat_id = :id
+                $sql_parts $sort";
+        }
+        
         $res = $db->prepare($sql);
-
         $res->bindParam(':id', $catId, PDO::PARAM_INT);
-
         $res->execute();
 
-        //Получение и возврат результатов
-
         $products = $res->fetchAll(PDO::FETCH_ASSOC);
-
         return $products;
     }
 

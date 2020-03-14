@@ -10,7 +10,7 @@ class Cart
      public static function addProduct($productsIds) {
         $id = intval($productsIds);
         //Пустой массив для товаров в корзине (ключ - id товара, значение - кол-во)
-        $productsInCart = array();
+        $productsInCart = [];
 
         //Если в корзине уже есть товары, заполняем массив
         if (isset($_SESSION['products'])) {
@@ -27,7 +27,6 @@ class Cart
         }
 
         $_SESSION['products'] = $productsInCart;
-
         return self::itemsCount();
     }
 
@@ -104,6 +103,7 @@ class Cart
         }
         return $total;
     }
+    
     //оформить заказ
     public static function clear(){
         if (isset($_SESSION['products'])) {
